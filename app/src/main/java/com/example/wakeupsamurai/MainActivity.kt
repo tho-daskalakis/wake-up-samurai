@@ -10,6 +10,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.app.ActivityCompat
 import android.widget.Toast
 import android.content.pm.PackageManager
+import android.content.Intent
+import android.provider.Settings
 
 class MainActivity : AppCompatActivity() {
 
@@ -73,15 +75,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startHotspot() {
-        // Code to start the hotspot (to be implemented)
+        // Guide user to hotspot settings
+        val intent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+        startActivity(intent)
         wakeLock.acquire()
+        Toast.makeText(this, "Please enable hotspot manually", Toast.LENGTH_LONG).show()
     }
 
     private fun stopHotspot() {
-        // Code to stop the hotspot (to be implemented)
+        // Guide user to hotspot settings
+        val intent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+        startActivity(intent)
         if (wakeLock.isHeld) {
             wakeLock.release()
         }
+        Toast.makeText(this, "Please disable hotspot manually", Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroy() {
