@@ -76,7 +76,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun startHotspot() {
         // Guide user to hotspot settings
-        val intent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+        val intent = Intent()
+        intent.action = "android.settings.TETHER_SETTINGS"
         startActivity(intent)
         wakeLock.acquire()
         Toast.makeText(this, "Please enable hotspot manually", Toast.LENGTH_LONG).show()
@@ -84,7 +85,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun stopHotspot() {
         // Guide user to hotspot settings
-        val intent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+        val intent = Intent()
+        intent.action = "android.settings.TETHER_SETTINGS"
         startActivity(intent)
         if (wakeLock.isHeld) {
             wakeLock.release()
